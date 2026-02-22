@@ -3,71 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KodNest Premium Build System</title>
+    <title>Job Notification Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================
            KODNEST PREMIUM BUILD SYSTEM
-           Design System Source of Truth
            ============================================ */
 
-        /* ---- CSS Custom Properties ---- */
         :root {
-            /* Colors - Maximum 4 core colors */
             --color-bg: #F7F6F3;
             --color-bg-elevated: #FFFFFF;
             --color-text: #111111;
             --color-accent: #8B0000;
             --color-muted: #6B6B6B;
-
-            /* Semantic Colors */
-            --color-success: #2D5A3D;
-            --color-success-bg: #E8F0EB;
-            --color-warning: #8B7355;
-            --color-warning-bg: #F5F1EB;
-            --color-error: #8B0000;
-            --color-error-bg: #FBEaea;
             --color-border: #E5E4E0;
-            --color-border-focus: #8B0000;
-
-            /* Typography */
+            
             --font-heading: "Cormorant Garamond", Georgia, serif;
-            --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: "DM Mono", "SF Mono", Consolas, monospace;
-
-            /* Type Scale */
+            --font-body: "DM Sans", -apple-system, sans-serif;
+            
             --text-h1: 48px;
             --text-h2: 36px;
-            --text-h3: 24px;
             --text-body: 17px;
             --text-small: 14px;
-            --text-caption: 12px;
-
-            /* Spacing Scale */
+            
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
             --space-lg: 40px;
             --space-xl: 64px;
-
-            /* Layout */
+            
             --topbar-height: 56px;
-            --content-max-width: 1280px;
-            --workspace-width: 70%;
-            --panel-width: 30%;
-
-            /* Effects */
             --radius-sm: 4px;
             --radius-md: 6px;
-            --radius-lg: 8px;
-            --radius-full: 100px;
             --transition-fast: 150ms ease-in-out;
-            --transition-normal: 200ms ease-in-out;
         }
 
-        /* ---- Reset & Base ---- */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -77,7 +49,6 @@
         html {
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -89,52 +60,27 @@
             min-height: 100vh;
         }
 
-        /* ---- Typography ---- */
-        h1, h2, h3, h4, h5, h6 {
+        h1 {
             font-family: var(--font-heading);
             font-weight: 600;
             letter-spacing: 0.02em;
             line-height: 1.2;
-            color: var(--color-text);
-        }
-
-        h1 { font-size: var(--text-h1); }
-        h2 { font-size: var(--text-h2); line-height: 1.25; }
-        h3 { font-size: var(--text-h3); line-height: 1.3; }
-
-        p {
-            max-width: 720px;
-            margin-bottom: var(--space-sm);
-        }
-
-        p:last-child {
-            margin-bottom: 0;
+            font-size: var(--text-h1);
         }
 
         .text-muted {
             color: var(--color-muted);
         }
 
-        .text-small {
-            font-size: var(--text-small);
-        }
-
-        .text-caption {
-            font-size: var(--text-caption);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        /* ---- Layout ---- */
+        /* ---- App Container ---- */
         .app-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* ---- Top Bar ---- */
-        .top-bar {
+        /* ---- Top Navigation ---- */
+        .top-nav {
             height: var(--topbar-height);
             background: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
@@ -147,13 +93,13 @@
             z-index: 100;
         }
 
-        .top-bar__left {
+        .top-nav__left {
             display: flex;
             align-items: center;
             gap: var(--space-sm);
         }
 
-        .top-bar__logo {
+        .top-nav__logo {
             width: 28px;
             height: 28px;
             background: var(--color-accent);
@@ -163,335 +109,144 @@
             justify-content: center;
         }
 
-        .top-bar__logo svg {
+        .top-nav__logo svg {
             width: 16px;
             height: 16px;
             fill: white;
         }
 
-        .top-bar__name {
+        .top-nav__brand {
             font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 600;
-            letter-spacing: 0.01em;
-        }
-
-        .top-bar__center {
-            font-size: var(--text-small);
-            font-weight: 500;
-            color: var(--color-muted);
-        }
-
-        .top-bar__right {
-            display: flex;
-            align-items: center;
-        }
-
-        /* ---- Status Badge ---- */
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 12px;
-            border-radius: var(--radius-full);
-            font-size: var(--text-small);
-            font-weight: 500;
-        }
-
-        .status-badge--not-started {
-            background: var(--color-border);
-            color: var(--color-muted);
-        }
-
-        .status-badge--in-progress {
-            background: var(--color-error-bg);
-            color: var(--color-accent);
-        }
-
-        .status-badge--shipped {
-            background: var(--color-success-bg);
-            color: var(--color-success);
-        }
-
-        /* ---- Context Header ---- */
-        .context-header {
-            padding: var(--space-lg) var(--space-md);
-            max-width: var(--content-max-width);
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .context-header__headline {
-            margin-bottom: var(--space-xs);
-        }
-
-        .context-header__subtext {
-            color: var(--color-muted);
-            font-size: var(--text-body);
-            max-width: 600px;
-        }
-
-        /* ---- Main Content Area ---- */
-        .main-content {
-            flex: 1;
-            max-width: var(--content-max-width);
-            margin: 0 auto;
-            width: 100%;
-            padding: 0 var(--space-md) var(--space-lg);
-            display: flex;
-            gap: var(--space-md);
-        }
-
-        /* ---- Primary Workspace ---- */
-        .workspace {
-            flex: 0 0 var(--workspace-width);
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-md);
-        }
-
-        /* ---- Secondary Panel ---- */
-        .panel {
-            flex: 0 0 var(--panel-width);
-            background: var(--color-bg-elevated);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md);
-            height: fit-content;
-            position: sticky;
-            top: calc(var(--topbar-height) + var(--space-md));
-        }
-
-        .panel__header {
-            margin-bottom: var(--space-sm);
-        }
-
-        .panel__title {
-            font-family: var(--font-heading);
-            font-size: var(--text-h3);
-            margin-bottom: var(--space-xs);
-        }
-
-        .panel__description {
-            font-size: var(--text-small);
-            color: var(--color-muted);
-            line-height: 1.5;
-        }
-
-        /* ---- Prompt Box ---- */
-        .prompt-box {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: var(--space-sm);
-            margin: var(--space-sm) 0 var(--space-md);
-            font-family: var(--font-mono);
-            font-size: 13px;
-            line-height: 1.6;
-            max-height: 180px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            word-break: break-word;
+            text-decoration: none;
             color: var(--color-text);
         }
 
-        .prompt-box__label {
-            font-size: var(--text-caption);
-            color: var(--color-muted);
-            margin-bottom: var(--space-xs);
-            display: block;
+        /* ---- Navigation Links ---- */
+        .top-nav__links {
+            display: flex;
+            gap: var(--space-md);
+            list-style: none;
         }
 
-        /* ---- Panel Actions ---- */
-        .panel__actions {
-            display: flex;
+        .top-nav__link {
+            font-size: var(--text-small);
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--color-muted);
+            padding: var(--space-xs) 0;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+
+        .top-nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--color-accent);
+            transform: scaleX(0);
+            transition: transform var(--transition-fast);
+        }
+
+        .top-nav__link:hover {
+            color: var(--color-text);
+        }
+
+        .top-nav__link.active {
+            color: var(--color-accent);
+        }
+
+        .top-nav__link.active::after {
+            transform: scaleX(1);
+        }
+
+        /* ---- Hamburger Menu ---- */
+        .top-nav__hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+
+        .top-nav__hamburger span {
+            width: 20px;
+            height: 2px;
+            background: var(--color-text);
+            transition: all var(--transition-fast);
+        }
+
+        .top-nav__hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .top-nav__hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .top-nav__hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        /* ---- Mobile Menu ---- */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--topbar-height);
+            left: 0;
+            right: 0;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-sm);
             flex-direction: column;
             gap: var(--space-xs);
         }
 
-        /* ---- Buttons ---- */
-        .btn {
-            display: inline-flex;
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu__link {
+            font-size: var(--text-body);
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--color-muted);
+            padding: var(--space-sm);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .mobile-menu__link:hover,
+        .mobile-menu__link.active {
+            background: var(--color-bg-elevated);
+            color: var(--color-accent);
+        }
+
+        /* ---- Page Container ---- */
+        .page-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: var(--space-xs);
-            font-family: var(--font-body);
-            font-weight: 500;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            text-decoration: none;
-            white-space: nowrap;
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
         }
 
-        .btn:focus-visible {
-            outline: 2px solid var(--color-accent);
-            outline-offset: 2px;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Primary Button */
-        .btn--primary {
-            background: var(--color-accent);
-            color: white;
-            padding: 12px 24px;
-            font-size: 15px;
-        }
-
-        .btn--primary:hover:not(:disabled) {
-            background: #6B0000;
-        }
-
-        /* Secondary Button */
-        .btn--secondary {
-            background: transparent;
-            color: var(--color-accent);
-            border: 1.5px solid var(--color-accent);
-            padding: 12px 24px;
-            font-size: 15px;
-        }
-
-        .btn--secondary:hover:not(:disabled) {
-            background: var(--color-error-bg);
-        }
-
-        /* Button Sizes */
-        .btn--sm {
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-
-        .btn--lg {
-            padding: 16px 32px;
-            font-size: 16px;
-        }
-
-        /* Button Variants */
-        .btn--success {
-            background: var(--color-success);
-            color: white;
-        }
-
-        .btn--success:hover:not(:disabled) {
-            background: #1F4530;
-        }
-
-        .btn--ghost {
-            background: transparent;
-            color: var(--color-muted);
-            border: 1px solid var(--color-border);
-        }
-
-        .btn--ghost:hover:not(:disabled) {
-            border-color: var(--color-muted);
-            color: var(--color-text);
-        }
-
-        /* ---- Cards ---- */
-        .card {
-            background: var(--color-bg-elevated);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md);
-            transition: border-color var(--transition-fast);
-        }
-
-        .card:hover {
-            border-color: #D5D4D0;
-        }
-
-        .card__header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .page-container h1 {
             margin-bottom: var(--space-sm);
         }
 
-        .card__title {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .card__content {
+        .page-container p {
             color: var(--color-muted);
-            font-size: var(--text-small);
-        }
-
-        /* ---- Form Elements ---- */
-        .form-group {
-            margin-bottom: var(--space-sm);
-        }
-
-        .form-label {
-            display: block;
-            font-size: var(--text-small);
-            font-weight: 500;
-            color: var(--color-text);
-            margin-bottom: var(--space-xs);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            color: var(--color-text);
-            background: var(--color-bg-elevated);
-            border: 1.5px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: border-color var(--transition-fast);
-        }
-
-        .form-input::placeholder {
-            color: var(--color-muted);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-border-focus);
-        }
-
-        .form-input:disabled {
-            background: var(--color-bg);
-            cursor: not-allowed;
-        }
-
-        textarea.form-input {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        /* ---- Checkbox ---- */
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            cursor: pointer;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-accent);
-            cursor: pointer;
-        }
-
-        .checkbox-group__label {
-            font-size: var(--text-small);
-        }
-
-        /* ---- Select ---- */
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 40px;
+            font-size: var(--text-body);
+            max-width: 500px;
         }
 
         /* ---- Proof Footer ---- */
@@ -504,7 +259,7 @@
         }
 
         .proof-footer__content {
-            max-width: var(--content-max-width);
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             flex-wrap: wrap;
@@ -551,155 +306,26 @@
             color: var(--color-muted);
         }
 
-        /* ---- Empty State ---- */
-        .empty-state {
-            text-align: center;
-            padding: var(--space-xl) var(--space-md);
-        }
-
-        .empty-state__icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto var(--space-sm);
-            background: var(--color-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--color-muted);
-        }
-
-        .empty-state__title {
-            font-family: var(--font-heading);
-            font-size: var(--text-h3);
-            margin-bottom: var(--space-xs);
-        }
-
-        .empty-state__description {
-            color: var(--color-muted);
-            font-size: var(--text-small);
-            margin-bottom: var(--space-sm);
-        }
-
-        /* ---- Error State ---- */
-        .error-state {
-            background: var(--color-error-bg);
-            border: 1px solid var(--color-error);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md);
-        }
-
-        .error-state__title {
-            font-family: var(--font-heading);
-            font-size: var(--text-h3);
-            color: var(--color-error);
-            margin-bottom: var(--space-xs);
-        }
-
-        .error-state__message {
-            color: var(--color-muted);
-            font-size: var(--text-small);
-            margin-bottom: var(--space-sm);
-        }
-
-        /* ---- Divider ---- */
-        .divider {
-            height: 1px;
-            background: var(--color-border);
-            margin: var(--space-md) 0;
-        }
-
-        /* ---- Avatar ---- */
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            color: var(--color-muted);
-        }
-
-        .avatar--sm {
-            width: 32px;
-            height: 32px;
-            font-size: 12px;
-        }
-
-        .avatar--lg {
-            width: 56px;
-            height: 56px;
-            font-size: 20px;
-        }
-
-        /* ---- Tags ---- */
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 4px 10px;
-            font-size: var(--text-caption);
-            font-weight: 500;
-            border-radius: var(--radius-sm);
-            background: var(--color-bg);
-            color: var(--color-muted);
-            border: 1px solid var(--color-border);
-        }
-
-        .tag--accent {
-            background: var(--color-error-bg);
-            color: var(--color-accent);
-            border-color: var(--color-error-bg);
-        }
-
-        .tag--success {
-            background: var(--color-success-bg);
-            color: var(--color-success);
-            border-color: var(--color-success-bg);
-        }
-
         /* ---- Responsive ---- */
-        @media (max-width: 1024px) {
-            .main-content {
-                flex-direction: column;
-            }
-
-            .workspace,
-            .panel {
-                flex: 1 1 100%;
-                width: 100%;
-            }
-
-            .panel {
-                position: static;
-            }
-        }
-
         @media (max-width: 768px) {
             :root {
                 --text-h1: 36px;
-                --text-h2: 28px;
-                --text-h3: 20px;
             }
 
-            .top-bar__center {
+            .top-nav__links {
                 display: none;
             }
 
-            .proof-footer__content {
-                gap: var(--space-xs);
+            .top-nav__hamburger {
+                display: flex;
             }
 
-            .proof-item {
-                flex: 1 1 45%;
+            .page-container {
+                padding: var(--space-lg) var(--space-md);
             }
         }
 
-        /* ---- Utility Classes ---- */
+        /* ---- Utility ---- */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -711,153 +337,50 @@
             white-space: nowrap;
             border: 0;
         }
-
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-xs { gap: var(--space-xs); }
-        .gap-sm { gap: var(--space-sm); }
-        .gap-md { gap: var(--space-md); }
-        .mt-sm { margin-top: var(--space-sm); }
-        .mt-md { margin-top: var(--space-md); }
-        .mb-sm { margin-bottom: var(--space-sm); }
-        .mb-md { margin-bottom: var(--space-md); }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Top Bar -->
-        <header class="top-bar">
-            <div class="top-bar__left">
-                <div class="top-bar__logo">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="top-nav__left">
+                <div class="top-nav__logo">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                     </svg>
                 </div>
-                <span class="top-bar__name">KodNest Premium</span>
-            </div>
-            <div class="top-bar__center">
-                Step 2 of 4
-            </div>
-            <div class="top-bar__right">
-                <span class="status-badge status-badge--in-progress">In Progress</span>
-            </div>
-        </header>
-
-        <!-- Context Header -->
-        <section class="context-header">
-            <h1 class="context-header__headline">Build Your First Feature</h1>
-            <p class="context-header__subtext">Configure your component library with custom tokens and export to your preferred framework.</p>
-        </section>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Primary Workspace -->
-            <div class="workspace">
-                
-                <!-- Card Example 1 -->
-                <div class="card">
-                    <div class="card__header">
-                        <h3 class="card__title">Component Configuration</h3>
-                        <span class="tag tag--accent">Required</span>
-                    </div>
-                    <div class="card__content">
-                        <div class="form-group">
-                            <label class="form-label" for="component-name">Component Name</label>
-                            <input type="text" class="form-input" id="component-name" placeholder="e.g., Button, Card, Modal">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="framework">Target Framework</label>
-                            <select class="form-input form-select" id="framework">
-                                <option value="">Select framework...</option>
-                                <option value="react">React</option>
-                                <option value="vue">Vue</option>
-                                <option value="angular">Angular</option>
-                                <option value="vanilla">Vanilla JS</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="description">Description</label>
-                            <textarea class="form-input" id="description" placeholder="Brief description of this component..."></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Example 2 -->
-                <div class="card">
-                    <div class="card__header">
-                        <h3 class="card__title">Style Tokens</h3>
-                        <span class="tag">Optional</span>
-                    </div>
-                    <div class="card__content">
-                        <div class="flex gap-sm">
-                            <div class="form-group" style="flex:1">
-                                <label class="form-label">Primary Color</label>
-                                <div class="flex items-center gap-xs">
-                                    <input type="color" value="#8B0000" style="width:40px;height:40px;border:1px solid var(--color-border);border-radius:4px;cursor:pointer;">
-                                    <input type="text" class="form-input" value="#8B0000" style="flex:1">
-                                </div>
-                            </div>
-                            <div class="form-group" style="flex:1">
-                                <label class="form-label">Border Radius</label>
-                                <select class="form-input form-select">
-                                    <option>4px (Small)</option>
-                                    <option selected>6px (Medium)</option>
-                                    <option>8px (Large)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Error State Example -->
-                <div class="error-state">
-                    <h4 class="error-state__title">Build Failed</h4>
-                    <p class="error-state__message">The component could not be generated due to invalid token values. Please ensure all color values use valid hex or RGB notation.</p>
-                    <button class="btn btn--secondary btn--sm">Fix Configuration</button>
-                </div>
-
-                <!-- Empty State Example -->
-                <div class="empty-state">
-                    <div class="empty-state__icon">○</div>
-                    <h3 class="empty-state__title">No Components Yet</h3>
-                    <p class="empty-state__description">Start by adding your first component to the library.</p>
-                    <button class="btn btn--primary">Add Component</button>
-                </div>
-
+                <a href="#/" class="top-nav__brand">JobTracker</a>
             </div>
 
-            <!-- Secondary Panel -->
-            <aside class="panel">
-                <div class="panel__header">
-                    <h3 class="panel__title">Step Explanation</h3>
-                    <p class="panel__description">Configure the core properties of your component including its name, target framework, and styling preferences.</p>
-                </div>
+            <!-- Desktop Navigation -->
+            <ul class="top-nav__links">
+                <li><a href="#/dashboard" class="top-nav__link" data-route="dashboard">Dashboard</a></li>
+                <li><a href="#/saved" class="top-nav__link" data-route="saved">Saved</a></li>
+                <li><a href="#/digest" class="top-nav__link" data-route="digest">Digest</a></li>
+                <li><a href="#/settings" class="top-nav__link" data-route="settings">Settings</a></li>
+                <li><a href="#/proof" class="top-nav__link" data-route="proof">Proof</a></li>
+            </ul>
 
-                <span class="prompt-box__label">Generated Prompt</span>
-                <div class="prompt-box">Create a premium button component in React with the following specifications:
+            <!-- Hamburger Menu -->
+            <button class="top-nav__hamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
 
-- Primary variant with #8B0000 accent color
-- Secondary outlined variant
-- Support for small, medium, and large sizes
-- Include hover and focus states
-- Use DM Sans font family</div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#/dashboard" class="mobile-menu__link" data-route="dashboard">Dashboard</a>
+            <a href="#/saved" class="mobile-menu__link" data-route="saved">Saved</a>
+            <a href="#/digest" class="mobile-menu__link" data-route="digest">Digest</a>
+            <a href="#/settings" class="mobile-menu__link" data-route="settings">Settings</a>
+            <a href="#/proof" class="mobile-menu__link" data-route="proof">Proof</a>
+        </div>
 
-                <div class="panel__actions">
-                    <button class="btn btn--primary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        Copy
-                    </button>
-                    <button class="btn btn--secondary">Build in Lovable</button>
-                    <button class="btn btn--success">It Worked</button>
-                    <button class="btn btn--ghost">Error</button>
-                    <button class="btn btn--secondary btn--sm">Add Screenshot</button>
-                </div>
-            </aside>
+        <!-- Page Content -->
+        <main id="pageContent" class="page-container">
+            <!-- Content rendered by JavaScript -->
         </main>
 
         <!-- Proof Footer -->
@@ -884,6 +407,109 @@
     </div>
 
     <script>
+        // Page templates
+        const pages = {
+            '/': {
+                title: 'Home',
+                heading: 'Welcome to JobTracker',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/dashboard': {
+                title: 'Dashboard',
+                heading: 'Dashboard',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/saved': {
+                title: 'Saved',
+                heading: 'Saved Jobs',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/digest': {
+                title: 'Digest',
+                heading: 'Weekly Digest',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/settings': {
+                title: 'Settings',
+                heading: 'Settings',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/proof': {
+                title: 'Proof',
+                heading: 'Proof of Work',
+                subtext: 'This section will be built in the next step.'
+            },
+            '/404': {
+                title: 'Page Not Found',
+                heading: 'Page Not Found',
+                subtext: 'The page you\'re looking for does not exist.',
+                is404: true
+            }
+        };
+
+        // Get current route from hash
+        function getRoute() {
+            const hash = window.location.hash.slice(1) || '/';
+            return pages[hash] ? hash : '/404';
+        }
+
+        // Render page content
+        function renderPage() {
+            const route = getRoute();
+            const page = pages[route];
+            
+            const pageContent = document.getElementById('pageContent');
+            
+            if (page.is404) {
+                pageContent.innerHTML = `
+                    <h1>${page.heading}</h1>
+                    <p>${page.subtext}</p>
+                    <a href="#/" class="top-nav__link">Return to Home</a>
+                `;
+            } else {
+                pageContent.innerHTML = `
+                    <h1>${page.heading}</h1>
+                    <p>${page.subtext}</p>
+                `;
+            }
+
+            // Update active link
+            document.querySelectorAll('.top-nav__link, .mobile-menu__link').forEach(link => {
+                const linkRoute = link.getAttribute('data-route');
+                const expectedRoute = route === '/' ? 'dashboard' : route.slice(1);
+                
+                if (linkRoute === expectedRoute || (route === '/' && linkRoute === 'dashboard')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.top-nav__hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu__link').forEach(link => {
+            link.addEventListener('click', () => {
+                const hamburger = document.querySelector('.top-nav__hamburger');
+                const mobileMenu = document.getElementById('mobileMenu');
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', renderPage);
+
+        // Initial render
+        renderPage();
+
         // Proof Footer Checkbox Logic
         document.querySelectorAll('.proof-item__checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', function() {
