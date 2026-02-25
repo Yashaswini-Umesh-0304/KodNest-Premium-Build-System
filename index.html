@@ -15,520 +15,150 @@
             --color-accent: #8B0000;
             --color-muted: #6B6B6B;
             --color-border: #E5E4E0;
-            
             --font-heading: "Cormorant Garamond", Georgia, serif;
             --font-body: "DM Sans", -apple-system, sans-serif;
-            
             --text-h1: 48px;
             --text-h2: 36px;
             --text-h3: 24px;
             --text-body: 17px;
             --text-small: 14px;
-            
             --space-xs: 8px;
             --space-sm: 16px;
             --space-md: 24px;
             --space-lg: 40px;
             --space-xl: 64px;
-            
             --topbar-height: 56px;
             --radius-sm: 4px;
             --radius-md: 6px;
             --radius-lg: 8px;
             --transition-fast: 150ms ease-in-out;
         }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            font-family: var(--font-body);
-            font-size: var(--text-body);
-            line-height: 1.7;
-            color: var(--color-text);
-            background-color: var(--color-bg);
-            min-height: 100vh;
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            line-height: 1.2;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-body); font-size: var(--text-body); line-height: 1.7; color: var(--color-text); background-color: var(--color-bg); min-height: 100vh; }
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 600; letter-spacing: 0.02em; line-height: 1.2; }
         h1 { font-size: var(--text-h1); }
         h2 { font-size: var(--text-h2); }
         h3 { font-size: var(--text-h3); }
-
         a { text-decoration: none; color: inherit; }
-
         .text-muted { color: var(--color-muted); }
         .text-small { font-size: var(--text-small); }
-
-        .app-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ---- Top Navigation ---- */
-        .top-nav {
-            height: var(--topbar-height);
-            background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 var(--space-md);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .top-nav__left {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .top-nav__logo {
-            width: 28px;
-            height: 28px;
-            background: var(--color-accent);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .top-nav__logo svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
-        .top-nav__brand {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 600;
-            text-decoration: none;
-            color: var(--color-text);
-        }
-
-        .top-nav__links {
-            display: flex;
-            gap: var(--space-md);
-            list-style: none;
-        }
-
-        .top-nav__link {
-            font-size: var(--text-small);
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--color-muted);
-            padding: var(--space-xs) 0;
-            position: relative;
-            transition: color var(--transition-fast);
-        }
-
-        .top-nav__link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--color-accent);
-            transform: scaleX(0);
-            transition: transform var(--transition-fast);
-        }
-
+        .app-container { min-height: 100vh; display: flex; flex-direction: column; }
+        .top-nav { height: var(--topbar-height); background: var(--color-bg); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; padding: 0 var(--space-md); position: sticky; top: 0; z-index: 100; }
+        .top-nav__left { display: flex; align-items: center; gap: var(--space-sm); }
+        .top-nav__logo { width: 28px; height: 28px; background: var(--color-accent); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+        .top-nav__logo svg { width: 16px; height: 16px; fill: white; }
+        .top-nav__brand { font-family: var(--font-heading); font-size: 20px; font-weight: 600; text-decoration: none; color: var(--color-text); }
+        .top-nav__links { display: flex; gap: var(--space-md); list-style: none; }
+        .top-nav__link { font-size: var(--text-small); font-weight: 500; text-decoration: none; color: var(--color-muted); padding: var(--space-xs) 0; position: relative; transition: color var(--transition-fast); }
+        .top-nav__link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--color-accent); transform: scaleX(0); transition: transform var(--transition-fast); }
         .top-nav__link:hover { color: var(--color-text); }
-        
-        .top-nav__link.active {
-            color: var(--color-accent);
-        }
-
-        .top-nav__link.active::after {
-            transform: scaleX(1);
-        }
-
-        /* ---- Hamburger Menu ---- */
-        .top-nav__hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: var(--space-xs);
-        }
-
-        .top-nav__hamburger span {
-            width: 20px;
-            height: 2px;
-            background: var(--color-text);
-            transition: all var(--transition-fast);
-        }
-
-        .top-nav__hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(4px, 4px);
-        }
-
+        .top-nav__link.active { color: var(--color-accent); }
+        .top-nav__link.active::after { transform: scaleX(1); }
+        .top-nav__hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: var(--space-xs); }
+        .top-nav__hamburger span { width: 20px; height: 2px; background: var(--color-text); transition: all var(--transition-fast); }
+        .top-nav__hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .top-nav__hamburger.active span:nth-child(2) { opacity: 0; }
-
-        .top-nav__hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(4px, -4px);
-        }
-
-        /* ---- Mobile Menu ---- */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: var(--topbar-height);
-            left: 0;
-            right: 0;
-            background: var(--color-bg);
-            border-bottom: 1px solid var(--color-border);
-            padding: var(--space-sm);
-            flex-direction: column;
-            gap: var(--space-xs);
-        }
-
+        .top-nav__hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .mobile-menu { display: none; position: fixed; top: var(--topbar-height); left: 0; right: 0; background: var(--color-bg); border-bottom: 1px solid var(--color-border); padding: var(--space-sm); flex-direction: column; gap: var(--space-xs); }
         .mobile-menu.active { display: flex; }
-
-        .mobile-menu__link {
-            font-size: var(--text-body);
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--color-muted);
-            padding: var(--space-sm);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-fast);
-        }
-
-        .mobile-menu__link:hover,
-        .mobile-menu__link.active {
-            background: var(--color-bg-elevated);
-            color: var(--color-accent);
-        }
-
-        /* ---- Page Container ---- */
-        .page-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: var(--space-xl) var(--space-md);
-        }
-
-        .page-container--centered {
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        /* ---- Landing Page ---- */
-        .landing {
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-            padding: var(--space-xl) 0;
-        }
-
-        .landing h1 {
-            margin-bottom: var(--space-sm);
-        }
-
-        .landing__subtext {
-            color: var(--color-muted);
-            font-size: var(--text-body);
-            margin-bottom: var(--space-lg);
-            max-width: 480px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ---- Buttons ---- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-body);
-            font-weight: 500;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            text-decoration: none;
-        }
-
-        .btn--primary {
-            background: var(--color-accent);
-            color: white;
-            padding: 14px 28px;
-            font-size: 15px;
-        }
-
-        .btn--primary:hover {
-            background: #6B0000;
-        }
-
-        .btn--secondary {
-            background: transparent;
-            color: var(--color-accent);
-            border: 1.5px solid var(--color-accent);
-            padding: 12px 24px;
-            font-size: 15px;
-        }
-
-        .btn--secondary:hover {
-            background: rgba(139, 0, 0, 0.05);
-        }
-
-        /* ---- Cards ---- */
-        .card {
-            background: var(--color-bg-elevated);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-md);
-            margin-bottom: var(--space-md);
-        }
-
-        .card__title {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-        }
-
-        /* ---- Form Elements ---- */
-        .form-group {
-            margin-bottom: var(--space-sm);
-        }
-
-        .form-label {
-            display: block;
-            font-size: var(--text-small);
-            font-weight: 500;
-            color: var(--color-text);
-            margin-bottom: 6px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            color: var(--color-text);
-            background: var(--color-bg-elevated);
-            border: 1.5px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: border-color var(--transition-fast);
-        }
-
-        .form-input::placeholder {
-            color: var(--color-muted);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-accent);
-        }
-
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 40px;
-        }
-
-        .form-hint {
-            font-size: var(--text-small);
-            color: var(--color-muted);
-            margin-top: 4px;
-        }
-
-        /* ---- Empty State ---- */
-        .empty-state {
-            text-align: center;
-            padding: var(--space-xl) var(--space-md);
-            max-width: 480px;
-            margin: 0 auto;
-        }
-
-        .empty-state__icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto var(--space-md);
-            background: var(--color-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--color-muted);
-        }
-
-        .empty-state h2 {
-            margin-bottom: var(--space-xs);
-        }
-
-        .empty-state p {
-            color: var(--color-muted);
-            font-size: var(--text-small);
-        }
-
-        /* ---- Settings Page ---- */
-        .settings-page {
-            max-width: 640px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .settings-page h1 {
-            margin-bottom: var(--space-lg);
-        }
-
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-            margin-top: var(--space-xs);
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .checkbox-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-accent);
-            cursor: pointer;
-        }
-
-        .checkbox-item__label {
-            font-size: var(--text-small);
-        }
-
-        /* ---- Proof Page ---- */
-        .proof-page {
-            max-width: 640px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .proof-page h1 {
-            margin-bottom: var(--space-lg);
-        }
-
-        /* ---- Footer ---- */
-        .proof-footer {
-            background: var(--color-bg-elevated);
-            border-top: 1px solid var(--color-border);
-            padding: var(--space-sm) var(--space-md);
-            position: sticky;
-            bottom: 0;
-        }
-
-        .proof-footer__content {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm) var(--space-lg);
-            align-items: center;
-        }
-
-        .proof-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-        }
-
-        .proof-item__checkbox {
-            width: 20px;
-            height: 20px;
-            border: 1.5px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
+        .mobile-menu__link { font-size: var(--text-body); font-weight: 500; text-decoration: none; color: var(--color-muted); padding: var(--space-sm); border-radius: var(--radius-md); transition: all var(--transition-fast); }
+        .mobile-menu__link:hover, .mobile-menu__link.active { background: var(--color-bg-elevated); color: var(--color-accent); }
+        .page-container { flex: 1; display: flex; flex-direction: column; padding: var(--space-xl) var(--space-md); }
+        .page-container--centered { align-items: center; justify-content: center; text-align: center; }
+        .landing { max-width: 720px; margin: 0 auto; text-align: center; padding: var(--space-xl) 0; }
+        .landing h1 { margin-bottom: var(--space-sm); }
+        .landing__subtext { color: var(--color-muted); font-size: var(--text-body); margin-bottom: var(--space-lg); max-width: 480px; margin-left: auto; margin-right: auto; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-body); font-weight: 500; border: none; border-radius: var(--radius-md); cursor: pointer; transition: all var(--transition-fast); text-decoration: none; }
+        .btn--primary { background: var(--color-accent); color: white; padding: 14px 28px; font-size: 15px; }
+        .btn--primary:hover { background: #6B0000; }
+        .btn--secondary { background: transparent; color: var(--color-accent); border: 1.5px solid var(--color-accent); padding: 12px 24px; font-size: 15px; }
+        .btn--secondary:hover { background: rgba(139, 0, 0, 0.05); }
+        .btn--sm { padding: 8px 16px; font-size: 13px; }
+        .btn--ghost { background: transparent; color: var(--color-muted); border: 1px solid var(--color-border); padding: 8px 16px; font-size: 13px; }
+        .btn--ghost:hover { border-color: var(--color-muted); color: var(--color-text); }
+        .card { background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md); }
+        .card__title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; margin-bottom: var(--space-sm); }
+        .form-group { margin-bottom: var(--space-sm); }
+        .form-label { display: block; font-size: var(--text-small); font-weight: 500; color: var(--color-text); margin-bottom: 6px; }
+        .form-input { width: 100%; padding: 12px 16px; font-family: var(--font-body); font-size: 15px; color: var(--color-text); background: var(--color-bg-elevated); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); transition: border-color var(--transition-fast); }
+        .form-input::placeholder { color: var(--color-muted); }
+        .form-input:focus { outline: none; border-color: var(--color-accent); }
+        .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+        .form-hint { font-size: var(--text-small); color: var(--color-muted); margin-top: 4px; }
+        .empty-state { text-align: center; padding: var(--space-xl) var(--space-md); max-width: 480px; margin: 0 auto; }
+        .empty-state__icon { width: 64px; height: 64px; margin: 0 auto var(--space-md); background: var(--color-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--color-muted); }
+        .empty-state h2 { margin-bottom: var(--space-xs); }
+        .empty-state p { color: var(--color-muted); font-size: var(--text-small); }
+        .settings-page { max-width: 640px; margin: 0 auto; width: 100%; }
+        .settings-page h1 { margin-bottom: var(--space-lg); }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xs); }
+        .checkbox-item { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--color-accent); cursor: pointer; }
+        .checkbox-item__label { font-size: var(--text-small); }
+        .proof-page { max-width: 640px; margin: 0 auto; width: 100%; }
+        .proof-page h1 { margin-bottom: var(--space-lg); }
+        .filter-bar { background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md); }
+        .filter-bar__row { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+        .filter-bar__search { flex: 1; min-width: 200px; }
+        .filter-bar__select { min-width: 140px; }
+        .jobs-grid { display: grid; gap: var(--space-md); }
+        .job-card { background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-md); transition: border-color var(--transition-fast); }
+        .job-card:hover { border-color: #D5D4D0; }
+        .job-card__header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-sm); }
+        .job-card__title { font-family: var(--font-heading); font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .job-card__company { font-size: var(--text-small); color: var(--color-muted); }
+        .job-card__meta { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-sm); font-size: var(--text-small); color: var(--color-muted); }
+        .job-card__meta-item { display: flex; align-items: center; gap: 4px; }
+        .job-card__salary { font-weight: 500; color: var(--color-text); margin-bottom: var(--space-sm); }
+        .job-card__actions { display: flex; gap: var(--space-xs); padding-top: var(--space-sm); border-top: 1px solid var(--color-border); }
+        .badge { display: inline-flex; padding: 3px 8px; font-size: 11px; font-weight: 500; border-radius: var(--radius-sm); text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge--source { background: var(--color-bg); color: var(--color-muted); }
+        .badge--mode-remote { background: #E8F0EB; color: #2D5A3D; }
+        .badge--mode-hybrid { background: #F5F1EB; color: #8B7355; }
+        .badge--mode-onsite { background: #E5E4E0; color: #6B6B6B; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 200; align-items: center; justify-content: center; padding: var(--space-md); }
+        .modal-overlay.active { display: flex; }
+        .modal { background: var(--color-bg-elevated); border-radius: var(--radius-lg); max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; }
+        .modal__header { padding: var(--space-md); border-bottom: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; }
+        .modal__title { font-family: var(--font-heading); font-size: 24px; }
+        .modal__close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-muted); padding: 4px; line-height: 1; }
+        .modal__close:hover { color: var(--color-text); }
+        .modal__body { padding: var(--space-md); }
+        .modal__section { margin-bottom: var(--space-md); }
+        .modal__section-title { font-size: var(--text-small); font-weight: 500; color: var(--color-muted); margin-bottom: var(--space-xs); text-transform: uppercase; letter-spacing: 0.05em; }
+        .skills-list { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+        .skill-tag { background: var(--color-bg); border: 1px solid var(--color-border); padding: 4px 10px; font-size: 13px; border-radius: var(--radius-sm); }
+        .proof-footer { background: var(--color-bg-elevated); border-top: 1px solid var(--color-border); padding: var(--space-sm) var(--space-md); position: sticky; bottom: 0; }
+        .proof-footer__content { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: var(--space-sm) var(--space-lg); align-items: center; }
+        .proof-item { display: flex; align-items: center; gap: var(--space-xs); }
+        .proof-item__checkbox { width: 20px; height: 20px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition-fast); display: flex; align-items: center; justify-content: center; }
         .proof-item__checkbox:hover { border-color: var(--color-muted); }
-
-        .proof-item__checkbox.checked {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-        }
-
-        .proof-item__checkbox.checked::after {
-            content: "✓";
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .proof-item__label {
-            font-size: var(--text-small);
-            color: var(--color-muted);
-        }
-
-        /* ---- Responsive ---- */
+        .proof-item__checkbox.checked { background: var(--color-accent); border-color: var(--color-accent); }
+        .proof-item__checkbox.checked::after { content: "✓"; color: white; font-size: 12px; font-weight: bold; }
+        .proof-item__label { font-size: var(--text-small); color: var(--color-muted); }
         @media (max-width: 768px) {
-            :root {
-                --text-h1: 36px;
-                --text-h2: 28px;
-            }
-
+            :root { --text-h1: 36px; --text-h2: 28px; }
             .top-nav__links { display: none; }
             .top-nav__hamburger { display: flex; }
             .page-container { padding: var(--space-lg) var(--space-md); }
+            .filter-bar__row { flex-direction: column; }
+            .filter-bar__search, .filter-bar__select { width: 100%; }
+            .job-card__header { flex-direction: column; gap: var(--space-xs); }
+            .job-card__actions { flex-wrap: wrap; }
         }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Top Navigation -->
         <nav class="top-nav">
             <div class="top-nav__left">
                 <div class="top-nav__logo">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 </div>
                 <a href="#/" class="top-nav__brand">JobTracker</a>
             </div>
-
-            <!-- Desktop Navigation -->
             <ul class="top-nav__links">
                 <li><a href="#/dashboard" class="top-nav__link" data-route="dashboard">Dashboard</a></li>
                 <li><a href="#/saved" class="top-nav__link" data-route="saved">Saved</a></li>
@@ -536,16 +166,8 @@
                 <li><a href="#/settings" class="top-nav__link" data-route="settings">Settings</a></li>
                 <li><a href="#/proof" class="top-nav__link" data-route="proof">Proof</a></li>
             </ul>
-
-            <!-- Hamburger Menu -->
-            <button class="top-nav__hamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <button class="top-nav__hamburger" aria-label="Toggle menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
         </nav>
-
-        <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <a href="#/dashboard" class="mobile-menu__link" data-route="dashboard">Dashboard</a>
             <a href="#/saved" class="mobile-menu__link" data-route="saved">Saved</a>
@@ -553,253 +175,163 @@
             <a href="#/settings" class="mobile-menu__link" data-route="settings">Settings</a>
             <a href="#/proof" class="mobile-menu__link" data-route="proof">Proof</a>
         </div>
-
-        <!-- Page Content -->
-        <main id="pageContent" class="page-container">
-            <!-- Content rendered by JavaScript -->
-        </main>
-
-        <!-- Proof Footer -->
+        <main id="pageContent" class="page-container"></main>
         <footer class="proof-footer">
             <div class="proof-footer__content">
-                <div class="proof-item">
-                    <div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
-                    <span class="proof-item__label">UI Built</span>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
-                    <span class="proof-item__label">Logic Working</span>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
-                    <span class="proof-item__label">Test Passed</span>
-                </div>
-                <div class="proof-item">
-                    <div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
-                    <span class="proof-item__label">Deployed</span>
-                </div>
+                <div class="proof-item"><div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div><span class="proof-item__label">UI Built</span></div>
+                <div class="proof-item"><div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div><span class="proof-item__label">Logic Working</span></div>
+                <div class="proof-item"><div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div><span class="proof-item__label">Test Passed</span></div>
+                <div class="proof-item"><div class="proof-item__checkbox" role="checkbox" aria-checked="false" tabindex="0"></div><span class="proof-item__label">Deployed</span></div>
             </div>
         </footer>
     </div>
-
+    <div class="modal-overlay" id="jobModal">
+        <div class="modal">
+            <div class="modal__header"><h2 class="modal__title" id="modalTitle">Job Details</h2><button class="modal__close" onclick="closeModal()">&times;</button></div>
+            <div class="modal__body" id="modalBody"></div>
+        </div>
+    </div>
     <script>
-        // Page templates
-        const pages = {
-            '/': {
-                title: 'Home',
-                type: 'landing'
-            },
-            '/dashboard': {
-                title: 'Dashboard',
-                type: 'empty',
-                heading: 'Dashboard',
-                subtext: 'No jobs yet. In the next step, you will load a realistic dataset.'
-            },
-            '/saved': {
-                title: 'Saved',
-                type: 'empty',
-                heading: 'Saved Jobs',
-                subtext: 'Jobs you save will appear here for quick access.'
-            },
-            '/digest': {
-                title: 'Digest',
-                type: 'empty',
-                heading: 'Weekly Digest',
-                subtext: 'Your personalized digest will arrive at 9AM on Mondays.'
-            },
-            '/settings': {
-                title: 'Settings',
-                type: 'settings'
-            },
-            '/proof': {
-                title: 'Proof',
-                type: 'proof'
-            },
-            '/404': {
-                title: 'Page Not Found',
-                type: '404'
-            }
-        };
-
-        // Get current route from hash
-        function getRoute() {
-            const hash = window.location.hash.slice(1) || '/';
-            return pages[hash] ? hash : '/404';
+        const jobs = [
+            { id: 1, title: "SDE Intern", company: "Flipkart", location: "Bangalore", mode: "Remote", experience: "Fresher", skills: ["Python", "SQL", "Data Structures", "Machine Learning"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "₹15k–₹25k/month", applyUrl: "https://careers.flipkart.com", description: "Join our engineering team to build scalable solutions. Work on real projects with senior engineers. Great learning opportunity for final year students. Mentorship from experienced developers." },
+            { id: 2, title: "Graduate Engineer Trainee", company: "TCS", location: "Pan India", mode: "Onsite", experience: "Fresher", skills: ["Java", "Python", "SQL", "Angular"], source: "Naukri", postedDaysAgo: 1, salaryRange: "3–5 LPA", applyUrl: "https://tcs.careers", description: "Join TCS as a Graduate Engineer Trainee. Comprehensive training provided. Work on cutting-edge technologies across multiple domains. Opportunity for global deployments." },
+            { id: 3, title: "Junior Backend Developer", company: "Razorpay", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["Node.js", "MongoDB", "Redis", "REST APIs"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "6–10 LPA", applyUrl: "https://razorpay.com/careers", description: "Build payment infrastructure used by millions. Work on high-scale systems. Great culture and learning opportunities. Stock options available." },
+            { id: 4, title: "Frontend Intern", company: "CRED", location: "Bangalore", mode: "Hybrid", experience: "Fresher", skills: ["React", "TypeScript", "CSS", "Redux"], source: "Indeed", postedDaysAgo: 0, salaryRange: "₹20k–₹30k/month", applyUrl: "https://cred.club/careers", description: "Create beautiful UI experiences for our millions of users. Work with award-winning design team. Flexible working hours. Potential conversion to full-time." },
+            { id: 5, title: "QA Intern", company: "Infosys", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Selenium", "Python", "Manual Testing", "API Testing"], source: "Naukri", postedDaysAgo: 3, salaryRange: "₹12k–₹18k/month", applyUrl: "https://infosys.com/careers", description: "Test enterprise-scale applications. Learn industry-standard testing practices. Opportunity to convert to full-time. Global certification support." },
+            { id: 6, title: "Data Analyst Intern", company: "Swiggy", location: "Bangalore", mode: "Remote", experience: "Fresher", skills: ["Python", "SQL", "Tableau", "Excel"], source: "LinkedIn", postedDaysAgo: 1, salaryRange: "₹18k–₹25k/month", applyUrl: "https://careers.swiggy.com", description: "Analyze food delivery data to drive business decisions. Work with data science team. Great exposure to analytics tools. Flexible schedule." },
+            { id: 7, title: "Java Developer", company: "Accenture", location: "Bangalore", mode: "Onsite", experience: "0-1", skills: ["Java", "Spring Boot", "Microservices", "Oracle"], source: "Naukri", postedDaysAgo: 4, salaryRange: "5–8 LPA", applyUrl: "https://accenture.com/careers", description: "Build enterprise applications for global clients. Work on digital transformation projects. Extensive training provided. Professional growth path." },
+            { id: 8, title: "Python Developer", company: "Zoho", location: "Chennai", mode: "Hybrid", experience: "Fresher", skills: ["Python", "Django", "PostgreSQL", "REST APIs"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "4–7 LPA", applyUrl: "https://zoho.com/careers", description: "Work on Zoho's suite of business applications. Learn from industry experts. Great work-life balance and benefits. Campus-like environment." },
+            { id: 9, title: "React Developer", company: "PhonePe", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["React", "JavaScript", "Redux", "Next.js"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "8–15 LPA", applyUrl: "https://phonepe.com/careers", description: "Build the future of digital payments. Work on high-performance mobile web apps. Stock options and great perks. Fast-paced environment." },
+            { id: 10, title: "SDE Intern", company: "Amazon", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Java", "Data Structures", "Algorithms", "AWS"], source: "LinkedIn", postedDaysAgo: 5, salaryRange: "₹30k–₹40k/month", applyUrl: "https://amazon.jobs", description: "Work on Amazon's cutting-edge technology. Learn from the best engineers. Potential conversion to full-time SDE1. World-class mentorship." },
+            { id: 11, title: "Backend Developer", company: "Freshworks", location: "Chennai", mode: "Hybrid", experience: "1-3", skills: ["Node.js", "Python", "MongoDB", "Docker"], source: "Indeed", postedDaysAgo: 3, salaryRange: "10–18 LPA", applyUrl: "https://freshworks.com/careers", description: "Build customer engagement software used by 50k+ businesses. Great learning culture. Competitive compensation. IPO company with growth." },
+            { id: 12, title: "DevOps Engineer", company: "Capgemini", location: "Hyderabad", mode: "Onsite", experience: "1-3", skills: ["AWS", "Docker", "Kubernetes", "Jenkins"], source: "Naukri", postedDaysAgo: 6, salaryRange: "7–12 LPA", applyUrl: "https://capgemini.com/careers", description: "Implement CI/CD pipelines for enterprise clients. Work on cloud infrastructure. Professional growth opportunities. Global projects." },
+            { id: 13, title: "QA Engineer", company: "Wipro", location: "Bangalore", mode: "Onsite", experience: "0-1", skills: ["Selenium", "Java", "TestNG", "Agile"], source: "Naukri", postedDaysAgo: 2, salaryRange: "4–6 LPA", applyUrl: "https://wipro.com/careers", description: "Test enterprise software applications. Learn automation frameworks. Clear career progression path. Training provided." },
+            { id: 14, title: "Full Stack Developer", company: "Paytm", location: "Noida", mode: "Hybrid", experience: "1-3", skills: ["React", "Node.js", "MongoDB", "Redis"], source: "LinkedIn", postedDaysAgo: 1, salaryRange: "8–14 LPA", applyUrl: "https://paytm.com/careers", description: "Build digital payment solutions at scale. Work on millions of transactions. Fast-paced learning environment. Tech-heavy company." },
+            { id: 15, title: "Data Scientist", company: "IBM", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["Python", "Machine Learning", "TensorFlow", "SQL"], source: "LinkedIn", postedDaysAgo: 4, salaryRange: "10–20 LPA", applyUrl: "https://ibm.com/careers", description: "Work on AI/ML solutions for global enterprises. Access to cutting-edge research. Professional development. Global brand value." },
+            { id: 16, title: "SDE Intern", company: "Oracle", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Java", "SQL", "Data Structures", "Algorithms"], source: "Indeed", postedDaysAgo: 7, salaryRange: "₹25k–₹35k/month", applyUrl: "https://oracle.com/careers", description: "Work on database technologies used worldwide. Learn from industry leaders. Great internship experience. Potential full-time offer." },
+            { id: 17, title: "Cloud Engineer", company: "SAP", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["AWS", "Python", "Linux", "Terraform"], source: "LinkedIn", postedDaysAgo: 3, salaryRange: "6–10 LPA", applyUrl: "https://sap.com/careers", description: "Work on enterprise cloud solutions. Learn SAP technologies. International exposure opportunities. German work culture." },
+            { id: 18, title: "Mobile Developer", company: "Juspay", location: "Bangalore", mode: "Remote", experience: "1-3", skills: ["Flutter", "Dart", "Firebase", "REST APIs"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "12–18 LPA", applyUrl: "https://juspay.in/careers", description: "Build payment SDKs used by UPI apps. Work on performance-critical mobile code. Startup culture with big impact. Flexible remote." },
+            { id: 19, title: "Graduate Trainee", company: "Cognizant", location: "Chennai", mode: "Onsite", experience: "Fresher", skills: ["Java", "Python", "SQL", "Angular"], source: "Naukri", postedDaysAgo: 5, salaryRange: "4–5 LPA", applyUrl: "https://cognizant.com/careers", description: "Join as a fresher and grow with training. Work on digital transformation. Clear advancement path. Global client exposure." },
+            { id: 20, title: "ML Engineer", company: "Flipkart", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["Python", "TensorFlow", "PyTorch", "Computer Vision"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "12–22 LPA", applyUrl: "https://careers.flipkart.com", description: "Work on recommendation systems and search. Petabytes of data to experiment. Published research opportunities. Big data infrastructure." },
+            { id: 21, title: "Frontend Developer", company: "Myntra", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["React", "JavaScript", "CSS", "Webpack"], source: "Indeed", postedDaysAgo: 1, salaryRange: "6–10 LPA", applyUrl: "https://myntra.com/careers", description: "Build engaging e-commerce experiences. Work on high-traffic pages. Fashion meets technology. Design-driven company." },
+            { id: 22, title: "SDE Intern", company: "Microsoft", location: "Bangalore", mode: "Hybrid", experience: "Fresher", skills: ["C#", ".NET", "Azure", "SQL Server"], source: "LinkedIn", postedDaysAgo: 8, salaryRange: "₹35k–₹45k/month", applyUrl: "https://microsoft.com/careers", description: "Work on products used by billions. Learn from top engineers. High conversion rate to full-time. World-class benefits." },
+            { id: 23, title: "Backend Engineer", company: "Dell", location: "Bangalore", mode: "Onsite", experience: "1-3", skills: ["Java", "Spring Boot", "Microservices", "Kubernetes"], source: "Naukri", postedDaysAgo: 4, salaryRange: "9–15 LPA", applyUrl: "https://dell.com/careers", description: "Build enterprise infrastructure software. Work on distributed systems. Global collaboration. Technical depth." },
+            { id: 24, title: "Data Engineer", company: "Accenture", location: "Hyderabad", mode: "Hybrid", experience: "1-3", skills: ["Python", "Spark", "Snowflake", "Airflow"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "8–14 LPA", applyUrl: "https://accenture.com/careers", description: "Build data pipelines for Fortune 500 companies. Work on cloud data platforms. Professional certifications. Global projects." },
+            { id: 25, title: "Python Developer", company: "TCS", location: "Pune", mode: "Onsite", experience: "0-1", skills: ["Python", "Django", "PostgreSQL", "Git"], source: "Naukri", postedDaysAgo: 3, salaryRange: "4–7 LPA", applyUrl: "https://tcs.careers", description: "Work on automation and web development projects. Comprehensive training. Job security with a global giant. Career growth." },
+            { id: 26, title: "SRE Engineer", company: "PhonePe", location: "Bangalore", mode: "Remote", experience: "1-3", skills: ["Linux", "Python", "Prometheus", "Docker"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "14–20 LPA", applyUrl: "https://phonepe.com/careers", description: "Ensure 99.99% uptime for payments. On-call compensation. Incident management experience. High-impact role." },
+            { id: 27, title: "React Native Developer", company: "Swiggy", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["React Native", "JavaScript", "iOS", "Android"], source: "LinkedIn", postedDaysAgo: 5, salaryRange: "10–16 LPA", applyUrl: "https://careers.swiggy.com", description: "Build features for Swiggy superapp. Work on delivery tracking. Scale to millions of users. Growth opportunities." },
+            { id: 28, title: "Junior Developer", company: "Infosys", location: "Mysore", mode: "Onsite", experience: "Fresher", skills: ["Java", "React", "SQL", "Spring"], source: "Naukri", postedDaysAgo: 6, salaryRange: "3.5–5 LPA", applyUrl: "https://infosys.com/careers", description: "Fresher training program with global certification. World-class campus. Career growth in IT services. Comprehensive training." },
+            { id: 29, title: "API Developer", company: "Razorpay", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["Node.js", "Express", "MongoDB", "REST APIs"], source: "Indeed", postedDaysAgo: 1, salaryRange: "6–9 LPA", applyUrl: "https://razorpay.com/careers", description: "Design and build payment APIs. Work with fintech architecture. Learn scalable system design. Startup perks." },
+            { id: 30, title: "Business Analyst", company: "Capgemini", location: "Mumbai", mode: "Hybrid", experience: "0-1", skills: ["Excel", "SQL", "PowerBI", "Agile"], source: "Naukri", postedDaysAgo: 7, salaryRange: "5–8 LPA", applyUrl: "https://capgemini.com/careers", description: "Bridge business and technology. Work with European clients. Domain expertise development. Consulting exposure." },
+            { id: 31, title: "SDE Intern", company: "Goldman Sachs", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Java", "Python", "Data Structures", "Algorithms"], source: "LinkedIn", postedDaysAgo: 10, salaryRange: "₹40k–₹50k/month", applyUrl: "https://goldmansachs.com/careers", description: "Work on trading platforms used globally. Competitive stipend. Potential PPO for top performers. Prestigious finance tech." },
+            { id: 32, title: "Support Engineer", company: "Freshworks", location: "Chennai", mode: "Onsite", experience: "Fresher", skills: ["Technical Support", "SQL", "Linux", "Python"], source: "Indeed", postedDaysAgo: 2, salaryRange: "4–6 LPA", applyUrl: "https://freshworks.com/careers", description: "Provide technical support to enterprise customers. Problem-solving skills. Customer interaction. Product knowledge." },
+            { id: 33, title: "Database Administrator", company: "Wipro", location: "Hyderabad", mode: "Onsite", experience: "1-3", skills: ["Oracle", "MySQL", "Performance Tuning", "Backup"], source: "Naukri", postedDaysAgo: 4, salaryRange: "6–10 LPA", applyUrl: "https://wipro.com/careers", description: "Manage critical database systems. 24/7 support environment. Certifications included. Enterprise exposure." },
+            { id: 34, title: "Vue.js Developer", company: "CRED", location: "Bangalore", mode: "Remote", experience: "1-3", skills: ["Vue.js", "JavaScript", "Nuxt", "TypeScript"], source: "LinkedIn", postedDaysAgo: 3, salaryRange: "10–15 LPA", applyUrl: "https://cred.club/careers", description: "Build premium user interfaces. Work on design-heavy features. Modern tech stack. Remote flexibility." },
+            { id: 35, title: "Trainee Engineer", company: "IBM", location: "Bangalore", mode: "Hybrid", experience: "Fresher", skills: ["Java", "Cloud", "AI", "Python"], source: "Naukri", postedDaysAgo: 5, salaryRange: "5–7 LPA", applyUrl: "https://ibm.com/careers", description: "Join IBM's fresher program. Multiple technology tracks. Global career opportunities. Industry leader." },
+            { id: 36, title: "Security Analyst", company: "Deloitte", location: "Gurgaon", mode: "Onsite", experience: "0-1", skills: ["Cybersecurity", "Networking", "SIEM", "Python"], source: "LinkedIn", postedDaysAgo: 8, salaryRange: "6–10 LPA", applyUrl: "https://deloitte.com/careers", description: "Work on cybersecurity projects for top clients. Industry certifications. Professional development. Big Four experience." },
+            { id: 37, title: "Node.js Developer", company: "Paytm", location: "Noida", mode: "Hybrid", experience: "1-3", skills: ["Node.js", "Express", "Redis", "GraphQL"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "9–14 LPA", applyUrl: "https://paytm.com/careers", description: "Build scalable backend services. Work on financial systems. High-impact projects. Large scale systems." },
+            { id: 38, title: "Test Automation Engineer", company: "Cognizant", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["Selenium", "Python", "Appium", "CI/CD"], source: "Naukri", postedDaysAgo: 3, salaryRange: "7–12 LPA", applyUrl: "https://cognizant.com/careers", description: "Automate testing for digital applications. Framework development. Agile environment. Enterprise projects." },
+            { id: 39, title: "Android Developer", company: "Amazon", location: "Hyderabad", mode: "Hybrid", experience: "0-1", skills: ["Kotlin", "Java", "Android SDK", "Firebase"], source: "LinkedIn", postedDaysAgo: 6, salaryRange: "8–12 LPA", applyUrl: "https://amazon.jobs", description: "Build features for Amazon Shopping app. Work on Android best practices. Great compensation. Global team." },
+            { id: 40, title: "Associate Software Engineer", company: "SAP", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Java", "ABAP", "OData", "Cloud"], source: "Naukri", postedDaysAgo: 9, salaryRange: "6–8 LPA", applyUrl: "https://sap.com/careers", description: "Join SAP's fresher program. Enterprise software development. Global product exposure. German MNC." },
+            { id: 41, title: "SDE Intern", company: "Adobe", location: "Noida", mode: "Hybrid", experience: "Fresher", skills: ["React", "Node.js", "MongoDB", "TypeScript"], source: "LinkedIn", postedDaysAgo: 4, salaryRange: "₹30k–₹40k/month", applyUrl: "https://adobe.com/careers", description: "Work on creative cloud products. Learn from industry experts. Creative tech environment. Great learning." },
+            { id: 42, title: "iOS Developer", company: "Flipkart", location: "Bangalore", mode: "Onsite", experience: "1-3", skills: ["Swift", "iOS", "Core Data", "Combine"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "12–18 LPA", applyUrl: "https://careers.flipkart.com", description: "Build features for Flipkart app. Work on Apple platform. Scale to millions. E-commerce domain." },
+            { id: 43, title: "Data Analyst", company: "Zoho", location: "Chennai", mode: "Remote", experience: "Fresher", skills: ["SQL", "Python", "Tableau", "Excel"], source: "Indeed", postedDaysAgo: 1, salaryRange: "4–6 LPA", applyUrl: "https://zoho.com/careers", description: "Analyze business metrics. Create dashboards. Decision support for leadership. Growing tech." },
+            { id: 44, title: "Technical Lead", company: "TCS", location: "Bangalore", mode: "Onsite", experience: "3-5", skills: ["Java", "Spring", "Microservices", "Leadership"], source: "Naukri", postedDaysAgo: 5, salaryRange: "15–25 LPA", applyUrl: "https://tcs.careers", description: "Lead technical teams for enterprise projects. Client interaction. Architecture design. Management role." },
+            { id: 45, title: "Blockchain Developer", company: "Infosys", location: "Pune", mode: "Hybrid", experience: "1-3", skills: ["Solidity", "Ethereum", "Web3", "JavaScript"], source: "LinkedIn", postedDaysAgo: 7, salaryRange: "10–16 LPA", applyUrl: "https://infosys.com/careers", description: "Work on blockchain solutions for enterprises. New technology stack. Innovation projects. Future tech." },
+            { id: 46, title: "Graduate Engineer", company: "L&T Infotech", location: "Mumbai", mode: "Onsite", experience: "Fresher", skills: ["Python", "SQL", "Machine Learning", "Tableau"], source: "Naukri", postedDaysAgo: 10, salaryRange: "4–6 LPA", applyUrl: "https://lntinfotech.com/careers", description: "Engineering graduate program. Multiple domain exposure. Infrastructure projects. Core engineering." },
+            { id: 47, title: "UI/UX Developer", company: "Myntra", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["React", "Figma", "CSS", "JavaScript"], source: "Indeed", postedDaysAgo: 3, salaryRange: "6–10 LPA", applyUrl: "https://myntra.com/careers", description: "Bridge design and development. Work with design team. Fashion tech domain. Creative role." },
+            { id: 48, title: "Salesforce Developer", company: "Accenture", location: "Gurgaon", mode: "Hybrid", experience: "1-3", skills: ["Apex", "Visualforce", "Salesforce", "Lightning"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "8–14 LPA", applyUrl: "https://accenture.com/careers", description: "Implement Salesforce for clients. CRM specialization. Global projects. In-demand skill." },
+            { id: 49, title: "Software Engineer", company: "Microsoft", location: "Hyderabad", mode: "Onsite", experience: "1-3", skills: ["C#", "Azure", ".NET", "SQL"], source: "LinkedIn", postedDaysAgo: 6, salaryRange: "14–22 LPA", applyUrl: "https://microsoft.com/careers", description: "Work on Azure/Office products. Best-in-class benefits. Career growth. Global tech leader." },
+            { id: 50, title: "Intern - Data Science", company: "Uber", location: "Bangalore", mode: "Hybrid", experience: "Fresher", skills: ["Python", "Machine Learning", "SQL", "Statistics"], source: "LinkedIn", postedDaysAgo: 0, salaryRange: "₹25k–₹35k/month", applyUrl: "https://uber.com/careers", description: "Work on rider-driver matching. Optimize algorithms. Global impact. Famous unicorn." },
+            { id: 51, title: "System Engineer", company: "Wipro", location: "Chennai", mode: "Onsite", experience: "0-1", skills: ["Linux", "Shell", "Python", "Networking"], source: "Naukri", postedDaysAgo: 8, salaryRange: "4–5 LPA", applyUrl: "https://wipro.com/careers", description: "Manage production systems. 24/7 operations. Infrastructure experience. Operations role." },
+            { id: 52, title: "Angular Developer", company: "CRED", location: "Bangalore", mode: "Remote", experience: "1-3", skills: ["Angular", "TypeScript", "RxJS", "SCSS"], source: "LinkedIn", postedDaysAgo: 4, salaryRange: "10–16 LPA", applyUrl: "https://cred.club/careers", description: "Build premium web applications. Modern Angular stack. Performance optimization. Design focus." },
+            { id: 53, title: "Trainee - Business Intelligence", company: "Capgemini", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["PowerBI", "SQL", "Python", "Data Warehousing"], source: "Indeed", postedDaysAgo: 5, salaryRange: "4–6 LPA", applyUrl: "https://capgemini.com/careers", description: "BI training program. Dashboard development. Client presentations. Analytics career." },
+            { id: 54, title: "Go Developer", company: "Razorpay", location: "Bangalore", mode: "Hybrid", experience: "1-3", skills: ["Go", "gRPC", "Kubernetes", "Redis"], source: "LinkedIn", postedDaysAgo: 1, salaryRange: "12–18 LPA", applyUrl: "https://razorpay.com/careers", description: "Build high-performance payment systems. Go microservices. Scale challenges. Fintech leader." },
+            { id: 55, title: "Product Support Engineer", company: "Freshworks", location: "Chennai", mode: "Remote", experience: "Fresher", skills: ["Technical Support", "SQL", "SaaS", "Customer Success"], source: "Naukri", postedDaysAgo: 7, salaryRange: "5–7 LPA", applyUrl: "https://freshworks.com/careers", description: "Support SaaS products globally. Customer success. Product feedback loop. B2B success." },
+            { id: 56, title: "Junior Data Engineer", company: "Swiggy", location: "Bangalore", mode: "Hybrid", experience: "0-1", skills: ["Python", "Spark", "Airflow", "BigQuery"], source: "LinkedIn", postedDaysAgo: 3, salaryRange: "7–10 LPA", applyUrl: "https://careers.swiggy.com", description: "Build data pipelines for food delivery. Work with petabytes. Real-time analytics. Food tech." },
+            { id: 57, title: "Associate Developer", company: "Oracle", location: "Bangalore", mode: "Onsite", experience: "Fresher", skills: ["Java", "Database", "SQL", "PL/SQL"], source: "Naukri", postedDaysAgo: 9, salaryRange: "6–9 LPA", applyUrl: "https://oracle.com/careers", description: "Work on Oracle Database team. Enterprise products. Technology depth. Database leader." },
+            { id: 58, title: "Site Reliability Engineer", company: "Amazon", location: "Hyderabad", mode: "Onsite", experience: "1-3", skills: ["AWS", "Python", "Linux", "Terraform"], source: "LinkedIn", postedDaysAgo: 2, salaryRange: "15–24 LPA", applyUrl: "https://amazon.jobs", description: "Ensure reliability of AWS services. SRE best practices. Scale challenges. Cloud leader." },
+            { id: 59, title: "Python Data Science Intern", company: "PhonePe", location: "Bangalore", mode: "Remote", experience: "Fresher", skills: ["Python", "Pandas", "Machine Learning", "Visualization"], source: "Indeed", postedDaysAgo: 0, salaryRange: "₹20k–₹28k/month", applyUrl: "https://phonepe.com/careers", description: "Analyze transaction data. Build ML models. Fintech domain knowledge. UPI pioneer." },
+            { id: 60, title: "Tech Associate", company: "Deloitte", location: "Bangalore", mode: "Hybrid", experience: "Fresher", skills: ["Java", "Spring", "Cloud", "Agile"], source: "Naukri", postedDaysAgo: 6, salaryRange: "6–9 LPA", applyUrl: "https://deloitte.com/careers", description: "Technology consulting fresher role. Multiple service lines. Professional growth. Big Four brand." }
+        ];
+        function getSavedJobs() { try { return JSON.parse(localStorage.getItem('savedJobs') || '[]'); } catch { return []; } }
+        function saveJob(jobId) { const saved = getSavedJobs(); if (!saved.includes(jobId)) { saved.push(jobId); localStorage.setItem('savedJobs', JSON.stringify(saved)); } renderPage(); }
+        function unsaveJob(jobId) { let saved = getSavedJobs(); saved = saved.filter(id => id !== jobId); localStorage.setItem('savedJobs', JSON.stringify(saved)); renderPage(); }
+        function isJobSaved(jobId) { return getSavedJobs().includes(jobId); }
+        function openModal(job) {
+            const modal = document.getElementById('jobModal');
+            document.getElementById('modalTitle').textContent = job.title + ' at ' + job.company;
+            const skillsHtml = job.skills.map(s => '<span class="skill-tag">' + s + '</span>').join('');
+            document.getElementById('modalBody').innerHTML = '<div class="modal__section"><div class="modal__section-title">Company</div><p>' + job.company + ' • ' + job.location + '</p></div><div class="modal__section"><div class="modal__section-title">Details</div><p><strong>Experience:</strong> ' + job.experience + ' years</p><p><strong>Salary:</strong> ' + job.salaryRange + '</p><p><strong>Mode:</strong> ' + job.mode + '</p><p><strong>Posted:</strong> ' + (job.postedDaysAgo === 0 ? 'Today' : job.postedDaysAgo + ' days ago') + '</p></div><div class="modal__section"><div class="modal__section-title">Skills</div><div class="skills-list">' + skillsHtml + '</div></div><div class="modal__section"><div class="modal__section-title">Description</div><p>' + job.description + '</p></div><div class="modal__section"><a href="' + job.applyUrl + '" target="_blank" class="btn btn--primary" style="width:100%">Apply Now</a></div>';
+            modal.classList.add('active');
         }
-
-        // Render page content
+        function closeModal() { document.getElementById('jobModal').classList.remove('active'); }
+        document.getElementById('jobModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+        const pages = {
+            '/': { title: 'Home', type: 'landing' },
+            '/dashboard': { title: 'Dashboard', type: 'dashboard' },
+            '/saved': { title: 'Saved', type: 'saved' },
+            '/digest': { title: 'Digest', type: 'empty', heading: 'Weekly Digest', subtext: 'Your personalized digest will arrive at 9AM on Mondays.' },
+            '/settings': { title: 'Settings', type: 'settings' },
+            '/proof': { title: 'Proof', type: 'proof' },
+            '/404': { title: 'Page Not Found', type: '404' }
+        };
+        let filterState = { search: '', location: '', mode: '', experience: '', source: '', sort: 'latest' };
+        function getFilteredJobs(jobList) {
+            return jobList.filter(function(job) {
+                if (filterState.search) { var searchLower = filterState.search.toLowerCase(); if (job.title.toLowerCase().indexOf(searchLower) === -1 && job.company.toLowerCase().indexOf(searchLower) === -1) { return false; } }
+                if (filterState.location && job.location !== filterState.location) return false;
+                if (filterState.mode && job.mode !== filterState.mode) return false;
+                if (filterState.experience && job.experience !== filterState.experience) return false;
+                if (filterState.source && job.source !== filterState.source) return false;
+                return true;
+            }).sort(function(a, b) { if (filterState.sort === 'latest') return a.postedDaysAgo - b.postedDaysAgo; return 0; });
+        }
+        function renderJobCard(job) {
+            var saved = isJobSaved(job.id);
+            return '<div class="job-card"><div class="job-card__header"><div><h3 class="job-card__title">' + job.title + '</h3><p class="job-card__company">' + job.company + '</p></div><span class="badge badge--source">' + job.source + '</span></div><div class="job-card__meta"><span class="job-card__meta-item">📍 ' + job.location + '</span><span class="badge badge--mode-' + job.mode.toLowerCase() + '">' + job.mode + '</span><span class="job-card__meta-item">💼 ' + job.experience + ' yrs</span><span class="job-card__meta-item">🕐 ' + (job.postedDaysAgo === 0 ? 'Today' : job.postedDaysAgo + ' days ago') + '</span></div><div class="job-card__salary">💰 ' + job.salaryRange + '</div><div class="job-card__actions"><button class="btn btn--secondary btn--sm" onclick="openModal(jobs.find(j => j.id === ' + job.id + '))">View</button><button class="btn ' + (saved ? 'btn--primary' : 'btn--ghost') + ' btn--sm" onclick="' + (saved ? 'unsaveJob(' + job.id + ')' : 'saveJob(' + job.id + ')') + '">' + (saved ? 'Saved' : 'Save') + '</button><a href="' + job.applyUrl + '" target="_blank" class="btn btn--primary btn--sm">Apply</a></div></div>';
+        }
+        function renderDashboard() {
+            var filtered = getFilteredJobs(jobs);
+            var locations = [...new Set(jobs.map(function(j) { return j.location; }))];
+            var sources = [...new Set(jobs.map(function(j) { return j.source; }))];
+            var selectOptions = { locations: locations, sources: sources };
+            return '<div class="filter-bar"><div class="filter-bar__row"><input type="text" class="form-input filter-bar__search" placeholder="Search by title or company..." value="' + filterState.search + '" onchange="filterState.search = this.value; renderPage()"><select class="form-input form-select filter-bar__select" onchange="filterState.location = this.value; renderPage()"><option value="">All Locations</option>' + locations.map(function(l) { return '<option value="' + l + '"' + (filterState.location === l ? ' selected' : '') + '>' + l + '</option>'; }).join('') + '</select><select class="form-input form-select filter-bar__select" onchange="filterState.mode = this.value; renderPage()"><option value="">All Modes</option><option value="Remote"' + (filterState.mode === 'Remote' ? ' selected' : '') + '>Remote</option><option value="Hybrid"' + (filterState.mode === 'Hybrid' ? ' selected' : '') + '>Hybrid</option><option value="Onsite"' + (filterState.mode === 'Onsite' ? ' selected' : '') + '>Onsite</option></select><select class="form-input form-select filter-bar__select" onchange="filterState.experience = this.value; renderPage()"><option value="">All Experience</option><option value="Fresher"' + (filterState.experience === 'Fresher' ? ' selected' : '') + '>Fresher</option><option value="0-1"' + (filterState.experience === '0-1' ? ' selected' : '') + '>0-1 years</option><option value="1-3"' + (filterState.experience === '1-3' ? ' selected' : '') + '>1-3 years</option><option value="3-5"' + (filterState.experience === '3-5' ? ' selected' : '') + '>3-5 years</option></select><select class="form-input form-select filter-bar__select" onchange="filterState.source = this.value; renderPage()"><option value="">All Sources</option>' + sources.map(function(s) { return '<option value="' + s + '"' + (filterState.source === s ? ' selected' : '') + '>' + s + '</option>'; }).join('') + '</select><select class="form-input form-select filter-bar__select" onchange="filterState.sort = this.value; renderPage()"><option value="latest"' + (filterState.sort === 'latest' ? ' selected' : '') + '>Latest First</option></select></div></div><div class="jobs-grid">' + (filtered.length > 0 ? filtered.map(renderJobCard).join('') : '<div class="empty-state"><div class="empty-state__icon">○</div><h2>No jobs found</h2><p>Try adjusting your filters</p></div>') + '</div>';
+        }
+        function renderSaved() {
+            var savedIds = getSavedJobs();
+            var savedJobs = jobs.filter(function(j) { return savedIds.indexOf(j.id) !== -1; });
+            if (savedJobs.length === 0) { return '<div class="empty-state"><div class="empty-state__icon">♡</div><h2>No Saved Jobs</h2><p>Save jobs from the dashboard to access them quickly here.</p><a href="#/dashboard" class="btn btn--primary" style="margin-top:16px">Browse Jobs</a></div>'; }
+            return '<h1 style="margin-bottom:var(--space-md)">Saved Jobs</h1><div class="jobs-grid">' + savedJobs.map(renderJobCard).join('') + '</div>';
+        }
+        function getRoute() { var hash = window.location.hash.slice(1) || '/'; return pages[hash] ? hash : '/404'; }
         function renderPage() {
-            const route = getRoute();
-            const page = pages[route];
-            const pageContent = document.getElementById('pageContent');
-            
-            // Remove centered class by default
+            var route = getRoute();
+            var page = pages[route];
+            var pageContent = document.getElementById('pageContent');
             pageContent.className = 'page-container';
-
-            let html = '';
-
+            var html = '';
             switch(page.type) {
                 case 'landing':
                     pageContent.classList.add('page-container--centered');
-                    html = `
-                        <div class="landing">
-                            <h1>Stop Missing The Right Jobs.</h1>
-                            <p class="landing__subtext">Precision-matched job discovery delivered daily at 9AM.</p>
-                            <a href="#/settings" class="btn btn--primary">Start Tracking</a>
-                        </div>
-                    `;
+                    html = '<div class="landing"><h1>Stop Missing The Right Jobs.</h1><p class="landing__subtext">Precision-matched job discovery delivered daily at 9AM.</p><a href="#/dashboard" class="btn btn--primary">Start Tracking</a></div>';
                     break;
-
-                case 'settings':
-                    html = `
-                        <div class="settings-page">
-                            <h1>Preferences</h1>
-                            
-                            <div class="card">
-                                <h3 class="card__title">Role Keywords</h3>
-                                <div class="form-group">
-                                    <input type="text" class="form-input" placeholder="e.g., Frontend, Backend, DevOps, AI/ML">
-                                    <p class="form-hint">Separate multiple keywords with commas</p>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <h3 class="card__title">Preferred Locations</h3>
-                                <div class="form-group">
-                                    <input type="text" class="form-input" placeholder="e.g., San Francisco, New York, Remote">
-                                    <p class="form-hint">Enter cities or "Remote" for anywhere</p>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <h3 class="card__title">Work Mode</h3>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" checked>
-                                        <span class="checkbox-item__label">Remote</span>
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" checked>
-                                        <span class="checkbox-item__label">Hybrid</span>
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" checked>
-                                        <span class="checkbox-item__label">Onsite</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <h3 class="card__title">Experience Level</h3>
-                                <div class="form-group">
-                                    <select class="form-input form-select">
-                                        <option value="">All levels</option>
-                                        <option value="entry">Entry Level (0-2 years)</option>
-                                        <option value="mid">Mid Level (2-5 years)</option>
-                                        <option value="senior">Senior (5-10 years)</option>
-                                        <option value="lead">Lead/Principal (10+ years)</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    break;
-
-                case 'empty':
-                    pageContent.classList.add('page-container--centered');
-                    html = `
-                        <div class="empty-state">
-                            <div class="empty-state__icon">○</div>
-                            <h2>${page.heading}</h2>
-                            <p>${page.subtext}</p>
-                        </div>
-                    `;
-                    break;
-
-                case 'proof':
-                    html = `
-                        <div class="proof-page">
-                            <h1>Proof of Work</h1>
-                            <div class="card">
-                                <h3 class="card__title">Artifact Collection</h3>
-                                <p class="text-muted text-small">Collect and showcase your job search artifacts, notes, and achievements.</p>
-                            </div>
-                        </div>
-                    `;
-                    break;
-
-                case '404':
-                    pageContent.classList.add('page-container--centered');
-                    html = `
-                        <div class="landing">
-                            <h1>Page Not Found</h1>
-                            <p class="landing__subtext">The page you're looking for does not exist.</p>
-                            <a href="#/" class="btn btn--secondary">Return Home</a>
-                        </div>
-                    `;
-                    break;
-
-                default:
-                    html = `
-                        <div class="empty-state">
-                            <div class="empty-state__icon">○</div>
-                            <h2>Page</h2>
-                            <p>This section will be built in the next step.</p>
-                        </div>
-                    `;
+                case 'dashboard': html = renderDashboard(); break;
+                case 'saved': html = renderSaved(); break;
+                case 'settings': html = '<div class="settings-page"><h1>Preferences</h1><div class="card"><h3 class="card__title">Role Keywords</h3><div class="form-group"><input type="text" class="form-input" placeholder="e.g., Frontend, Backend, DevOps, AI/ML"><p class="form-hint">Separate multiple keywords with commas</p></div></div><div class="card"><h3 class="card__title">Preferred Locations</h3><div class="form-group"><input type="text" class="form-input" placeholder="e.g., Bangalore, Hyderabad, Remote"><p class="form-hint">Enter cities or "Remote" for anywhere</p></div></div><div class="card"><h3 class="card__title">Work Mode</h3><div class="checkbox-group"><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">Remote</span></label><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">Hybrid</span></label><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">Onsite</span></label></div></div><div class="card"><h3 class="card__title">Experience Level</h3><div class="checkbox-group"><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">Fresher</span></label><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">0-1 years</span></label><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">1-3 years</span></label><label class="checkbox-item"><input type="checkbox" checked><span class="checkbox-item__label">3-5 years</span></label></div></div><button class="btn btn--primary" style="margin-top:var(--space-md)">Save Preferences</button></div>'; break;
+                case 'empty': html = '<div class="empty-state"><div class="empty-state__icon">○</div><h2>' + page.heading + '</h2><p>' + page.subtext + '</p></div>'; break;
+                case 'proof': html = '<div class="proof-page"><h1>Proof of Work</h1><div class="card"><h3 class="card__title">Track Your Progress</h3><p class="text-muted">Use the checkboxes below to track your journey from concept to deployment.</p><div class="checkbox-group" style="margin-top:var(--space-md)"><label class="checkbox-item"><input type="checkbox"><span class="checkbox-item__label">UI Built</span></label><label class="checkbox-item"><input type="checkbox"><span class="checkbox-item__label">Logic Working</span></label><label class="checkbox-item"><input type="checkbox"><span class="checkbox-item__label">Test Passed</span></label><label class="checkbox-item"><input type="checkbox"><span class="checkbox-item__label">Deployed</span></label></div></div></div>'; break;
+                case '404': html = '<div class="empty-state"><div class="empty-state__icon">?</div><h2>Page Not Found</h2><p>The page you are looking for does not exist.</p><a href="#/" class="btn btn--primary" style="margin-top:16px">Go Home</a></div>'; break;
             }
-
             pageContent.innerHTML = html;
-
-            // Update active link
-            document.querySelectorAll('.top-nav__link, .mobile-menu__link').forEach(link => {
-                const linkRoute = link.getAttribute('data-route');
-                const expectedRoute = route === '/' ? null : route.slice(1);
-                
-                if (linkRoute === expectedRoute) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
+            document.querySelectorAll('.top-nav__link, .mobile-menu__link').forEach(function(link) { var linkRoute = link.getAttribute('data-route'); var expectedRoute = route === '/' ? 'dashboard' : route.slice(1); if (linkRoute === expectedRoute || (route === '/' && linkRoute === 'dashboard')) { link.classList.add('active'); } else { link.classList.remove('active'); } });
         }
-
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            const hamburger = document.querySelector('.top-nav__hamburger');
-            const mobileMenu = document.getElementById('mobileMenu');
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        }
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-menu__link').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.top-nav__hamburger').classList.remove('active');
-                document.getElementById('mobileMenu').classList.remove('active');
-            });
-        });
-
-        // Listen for hash changes
+        function toggleMobileMenu() { var hamburger = document.querySelector('.top-nav__hamburger'); var mobileMenu = document.getElementById('mobileMenu'); hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active'); }
+        document.querySelectorAll('.mobile-menu__link').forEach(function(link) { link.addEventListener('click', function() { var hamburger = document.querySelector('.top-nav__hamburger'); var mobileMenu = document.getElementById('mobileMenu'); hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); }); });
         window.addEventListener('hashchange', renderPage);
-
-        // Initial render
-        renderPage();
-
-        // Proof Footer Checkbox Logic
-        document.querySelectorAll('.proof-item__checkbox').forEach(checkbox => {
-            checkbox.addEventListener('click', function() {
-                this.classList.toggle('checked');
-                this.setAttribute('aria-checked', this.classList.contains('checked'));
-            });
-
-            checkbox.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
-        });
+        document.addEventListener('DOMContentLoaded', renderPage);
+        document.querySelectorAll('.proof-item__checkbox').forEach(function(checkbox) { checkbox.addEventListener('click', function() { this.classList.toggle('checked'); var isChecked = this.classList.contains('checked'); this.setAttribute('aria-checked', isChecked); }); checkbox.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.click(); } }); });
     </script>
 </body>
 </html>
