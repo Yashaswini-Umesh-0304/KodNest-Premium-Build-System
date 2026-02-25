@@ -8,10 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ============================================
-           KODNEST PREMIUM BUILD SYSTEM
-           ============================================ */
-
         :root {
             --color-bg: #F7F6F3;
             --color-bg-elevated: #FFFFFF;
@@ -25,6 +21,7 @@
             
             --text-h1: 48px;
             --text-h2: 36px;
+            --text-h3: 24px;
             --text-body: 17px;
             --text-small: 14px;
             
@@ -37,6 +34,7 @@
             --topbar-height: 56px;
             --radius-sm: 4px;
             --radius-md: 6px;
+            --radius-lg: 8px;
             --transition-fast: 150ms ease-in-out;
         }
 
@@ -60,19 +58,22 @@
             min-height: 100vh;
         }
 
-        h1 {
+        h1, h2, h3 {
             font-family: var(--font-heading);
             font-weight: 600;
             letter-spacing: 0.02em;
             line-height: 1.2;
-            font-size: var(--text-h1);
         }
 
-        .text-muted {
-            color: var(--color-muted);
-        }
+        h1 { font-size: var(--text-h1); }
+        h2 { font-size: var(--text-h2); }
+        h3 { font-size: var(--text-h3); }
 
-        /* ---- App Container ---- */
+        a { text-decoration: none; color: inherit; }
+
+        .text-muted { color: var(--color-muted); }
+        .text-small { font-size: var(--text-small); }
+
         .app-container {
             min-height: 100vh;
             display: flex;
@@ -123,7 +124,6 @@
             color: var(--color-text);
         }
 
-        /* ---- Navigation Links ---- */
         .top-nav__links {
             display: flex;
             gap: var(--space-md);
@@ -152,10 +152,8 @@
             transition: transform var(--transition-fast);
         }
 
-        .top-nav__link:hover {
-            color: var(--color-text);
-        }
-
+        .top-nav__link:hover { color: var(--color-text); }
+        
         .top-nav__link.active {
             color: var(--color-accent);
         }
@@ -186,9 +184,7 @@
             transform: rotate(45deg) translate(4px, 4px);
         }
 
-        .top-nav__hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
+        .top-nav__hamburger.active span:nth-child(2) { opacity: 0; }
 
         .top-nav__hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(4px, -4px);
@@ -208,9 +204,7 @@
             gap: var(--space-xs);
         }
 
-        .mobile-menu.active {
-            display: flex;
-        }
+        .mobile-menu.active { display: flex; }
 
         .mobile-menu__link {
             font-size: var(--text-body);
@@ -233,23 +227,215 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            padding: var(--space-xl) var(--space-md);
+        }
+
+        .page-container--centered {
             align-items: center;
             justify-content: center;
-            padding: var(--space-xl) var(--space-md);
             text-align: center;
         }
 
-        .page-container h1 {
+        /* ---- Landing Page ---- */
+        .landing {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            padding: var(--space-xl) 0;
+        }
+
+        .landing h1 {
             margin-bottom: var(--space-sm);
         }
 
-        .page-container p {
+        .landing__subtext {
             color: var(--color-muted);
             font-size: var(--text-body);
-            max-width: 500px;
+            margin-bottom: var(--space-lg);
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* ---- Proof Footer ---- */
+        /* ---- Buttons ---- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            font-weight: 500;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background: var(--color-accent);
+            color: white;
+            padding: 14px 28px;
+            font-size: 15px;
+        }
+
+        .btn--primary:hover {
+            background: #6B0000;
+        }
+
+        .btn--secondary {
+            background: transparent;
+            color: var(--color-accent);
+            border: 1.5px solid var(--color-accent);
+            padding: 12px 24px;
+            font-size: 15px;
+        }
+
+        .btn--secondary:hover {
+            background: rgba(139, 0, 0, 0.05);
+        }
+
+        /* ---- Cards ---- */
+        .card {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .card__title {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        /* ---- Form Elements ---- */
+        .form-group {
+            margin-bottom: var(--space-sm);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-small);
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--color-text);
+            background: var(--color-bg-elevated);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-input::placeholder {
+            color: var(--color-muted);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B6B6B' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        .form-hint {
+            font-size: var(--text-small);
+            color: var(--color-muted);
+            margin-top: 4px;
+        }
+
+        /* ---- Empty State ---- */
+        .empty-state {
+            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .empty-state__icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-md);
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--color-muted);
+        }
+
+        .empty-state h2 {
+            margin-bottom: var(--space-xs);
+        }
+
+        .empty-state p {
+            color: var(--color-muted);
+            font-size: var(--text-small);
+        }
+
+        /* ---- Settings Page ---- */
+        .settings-page {
+            max-width: 640px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .settings-page h1 {
+            margin-bottom: var(--space-lg);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-top: var(--space-xs);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-accent);
+            cursor: pointer;
+        }
+
+        .checkbox-item__label {
+            font-size: var(--text-small);
+        }
+
+        /* ---- Proof Page ---- */
+        .proof-page {
+            max-width: 640px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .proof-page h1 {
+            margin-bottom: var(--space-lg);
+        }
+
+        /* ---- Footer ---- */
         .proof-footer {
             background: var(--color-bg-elevated);
             border-top: 1px solid var(--color-border);
@@ -285,9 +471,7 @@
             justify-content: center;
         }
 
-        .proof-item__checkbox:hover {
-            border-color: var(--color-muted);
-        }
+        .proof-item__checkbox:hover { border-color: var(--color-muted); }
 
         .proof-item__checkbox.checked {
             background: var(--color-accent);
@@ -310,22 +494,14 @@
         @media (max-width: 768px) {
             :root {
                 --text-h1: 36px;
+                --text-h2: 28px;
             }
 
-            .top-nav__links {
-                display: none;
-            }
-
-            .top-nav__hamburger {
-                display: flex;
-            }
-
-            .page-container {
-                padding: var(--space-lg) var(--space-md);
-            }
+            .top-nav__links { display: none; }
+            .top-nav__hamburger { display: flex; }
+            .page-container { padding: var(--space-lg) var(--space-md); }
         }
 
-        /* ---- Utility ---- */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -411,39 +587,37 @@
         const pages = {
             '/': {
                 title: 'Home',
-                heading: 'Welcome to JobTracker',
-                subtext: 'This section will be built in the next step.'
+                type: 'landing'
             },
             '/dashboard': {
                 title: 'Dashboard',
+                type: 'empty',
                 heading: 'Dashboard',
-                subtext: 'This section will be built in the next step.'
+                subtext: 'No jobs yet. In the next step, you will load a realistic dataset.'
             },
             '/saved': {
                 title: 'Saved',
+                type: 'empty',
                 heading: 'Saved Jobs',
-                subtext: 'This section will be built in the next step.'
+                subtext: 'Jobs you save will appear here for quick access.'
             },
             '/digest': {
                 title: 'Digest',
+                type: 'empty',
                 heading: 'Weekly Digest',
-                subtext: 'This section will be built in the next step.'
+                subtext: 'Your personalized digest will arrive at 9AM on Mondays.'
             },
             '/settings': {
                 title: 'Settings',
-                heading: 'Settings',
-                subtext: 'This section will be built in the next step.'
+                type: 'settings'
             },
             '/proof': {
                 title: 'Proof',
-                heading: 'Proof of Work',
-                subtext: 'This section will be built in the next step.'
+                type: 'proof'
             },
             '/404': {
                 title: 'Page Not Found',
-                heading: 'Page Not Found',
-                subtext: 'The page you\'re looking for does not exist.',
-                is404: true
+                type: '404'
             }
         };
 
@@ -457,28 +631,132 @@
         function renderPage() {
             const route = getRoute();
             const page = pages[route];
-            
             const pageContent = document.getElementById('pageContent');
             
-            if (page.is404) {
-                pageContent.innerHTML = `
-                    <h1>${page.heading}</h1>
-                    <p>${page.subtext}</p>
-                    <a href="#/" class="top-nav__link">Return to Home</a>
-                `;
-            } else {
-                pageContent.innerHTML = `
-                    <h1>${page.heading}</h1>
-                    <p>${page.subtext}</p>
-                `;
+            // Remove centered class by default
+            pageContent.className = 'page-container';
+
+            let html = '';
+
+            switch(page.type) {
+                case 'landing':
+                    pageContent.classList.add('page-container--centered');
+                    html = `
+                        <div class="landing">
+                            <h1>Stop Missing The Right Jobs.</h1>
+                            <p class="landing__subtext">Precision-matched job discovery delivered daily at 9AM.</p>
+                            <a href="#/settings" class="btn btn--primary">Start Tracking</a>
+                        </div>
+                    `;
+                    break;
+
+                case 'settings':
+                    html = `
+                        <div class="settings-page">
+                            <h1>Preferences</h1>
+                            
+                            <div class="card">
+                                <h3 class="card__title">Role Keywords</h3>
+                                <div class="form-group">
+                                    <input type="text" class="form-input" placeholder="e.g., Frontend, Backend, DevOps, AI/ML">
+                                    <p class="form-hint">Separate multiple keywords with commas</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h3 class="card__title">Preferred Locations</h3>
+                                <div class="form-group">
+                                    <input type="text" class="form-input" placeholder="e.g., San Francisco, New York, Remote">
+                                    <p class="form-hint">Enter cities or "Remote" for anywhere</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h3 class="card__title">Work Mode</h3>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span class="checkbox-item__label">Remote</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span class="checkbox-item__label">Hybrid</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        <span class="checkbox-item__label">Onsite</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <h3 class="card__title">Experience Level</h3>
+                                <div class="form-group">
+                                    <select class="form-input form-select">
+                                        <option value="">All levels</option>
+                                        <option value="entry">Entry Level (0-2 years)</option>
+                                        <option value="mid">Mid Level (2-5 years)</option>
+                                        <option value="senior">Senior (5-10 years)</option>
+                                        <option value="lead">Lead/Principal (10+ years)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'empty':
+                    pageContent.classList.add('page-container--centered');
+                    html = `
+                        <div class="empty-state">
+                            <div class="empty-state__icon">○</div>
+                            <h2>${page.heading}</h2>
+                            <p>${page.subtext}</p>
+                        </div>
+                    `;
+                    break;
+
+                case 'proof':
+                    html = `
+                        <div class="proof-page">
+                            <h1>Proof of Work</h1>
+                            <div class="card">
+                                <h3 class="card__title">Artifact Collection</h3>
+                                <p class="text-muted text-small">Collect and showcase your job search artifacts, notes, and achievements.</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case '404':
+                    pageContent.classList.add('page-container--centered');
+                    html = `
+                        <div class="landing">
+                            <h1>Page Not Found</h1>
+                            <p class="landing__subtext">The page you're looking for does not exist.</p>
+                            <a href="#/" class="btn btn--secondary">Return Home</a>
+                        </div>
+                    `;
+                    break;
+
+                default:
+                    html = `
+                        <div class="empty-state">
+                            <div class="empty-state__icon">○</div>
+                            <h2>Page</h2>
+                            <p>This section will be built in the next step.</p>
+                        </div>
+                    `;
             }
+
+            pageContent.innerHTML = html;
 
             // Update active link
             document.querySelectorAll('.top-nav__link, .mobile-menu__link').forEach(link => {
                 const linkRoute = link.getAttribute('data-route');
-                const expectedRoute = route === '/' ? 'dashboard' : route.slice(1);
+                const expectedRoute = route === '/' ? null : route.slice(1);
                 
-                if (linkRoute === expectedRoute || (route === '/' && linkRoute === 'dashboard')) {
+                if (linkRoute === expectedRoute) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');
@@ -497,10 +775,8 @@
         // Close mobile menu when clicking a link
         document.querySelectorAll('.mobile-menu__link').forEach(link => {
             link.addEventListener('click', () => {
-                const hamburger = document.querySelector('.top-nav__hamburger');
-                const mobileMenu = document.getElementById('mobileMenu');
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
+                document.querySelector('.top-nav__hamburger').classList.remove('active');
+                document.getElementById('mobileMenu').classList.remove('active');
             });
         });
 
@@ -514,8 +790,7 @@
         document.querySelectorAll('.proof-item__checkbox').forEach(checkbox => {
             checkbox.addEventListener('click', function() {
                 this.classList.toggle('checked');
-                const isChecked = this.classList.contains('checked');
-                this.setAttribute('aria-checked', isChecked);
+                this.setAttribute('aria-checked', this.classList.contains('checked'));
             });
 
             checkbox.addEventListener('keydown', function(e) {
